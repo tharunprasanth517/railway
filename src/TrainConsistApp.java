@@ -1,5 +1,5 @@
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TrainConsistApp {
 
@@ -7,20 +7,19 @@ public class TrainConsistApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        // Create LinkedHashSet for train formation
-        Set<String> formation = new LinkedHashSet<>();
+        // Create HashMap for bogie → capacity
+        Map<String, Integer> bogieCapacityMap = new HashMap<>();
 
-        // Add bogies
-        formation.add("Engine");
-        formation.add("Sleeper");
-        formation.add("Cargo");
-        formation.add("Guard");
+        // Insert bogie capacities
+        bogieCapacityMap.put("Sleeper", 72);
+        bogieCapacityMap.put("AC Chair", 60);
+        bogieCapacityMap.put("First Class", 24);
 
-        // Attempt to add duplicate
-        formation.add("Sleeper"); // duplicate (will be ignored)
+        // Display capacity details
+        System.out.println("\nBogie Capacity Details:");
 
-        // Display final formation
-        System.out.println("\nFinal Train Formation (Insertion Order Preserved):");
-        System.out.println(formation);
+        for (Map.Entry<String, Integer> entry : bogieCapacityMap.entrySet()) {
+            System.out.println(entry.getKey() + " → Capacity: " + entry.getValue());
+        }
     }
 }
