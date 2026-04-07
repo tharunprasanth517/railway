@@ -1,62 +1,44 @@
-import java.util.*;
-
-// Custom Runtime Exception
-class CargoSafetyException extends RuntimeException {
-    public CargoSafetyException(String message) {
-        super(message);
-    }
-}
-
-// Goods Bogie class
-class GoodsBogie {
-    String type;
-    String cargo;
-
-    GoodsBogie(String type) {
-        this.type = type;
-    }
-
-    // Method to assign cargo safely
-    void assignCargo(String cargo) {
-        try {
-            // Unsafe condition
-            if (type.equals("Rectangular") && cargo.equals("Petroleum")) {
-                throw new CargoSafetyException("Unsafe: Rectangular bogie cannot carry Petroleum!");
-            }
-
-            // Safe assignment
-            this.cargo = cargo;
-            System.out.println(type + " bogie assigned cargo: " + cargo);
-
-        } catch (CargoSafetyException e) {
-            System.out.println("Error: " + e.getMessage());
-
-        } finally {
-            System.out.println("Cargo assignment attempt completed.\n");
-        }
-    }
-}
-
-// Main class
 public class TrainConsistApp {
 
     public static void main(String[] args) {
 
         System.out.println("=====================================");
-        System.out.println(" UC15 - Safe Cargo Assignment ");
+        System.out.println(" UC16 - Bubble Sort (Manual Sorting) ");
         System.out.println("=====================================\n");
 
-        // Create bogies
-        GoodsBogie b1 = new GoodsBogie("Cylindrical");
-        GoodsBogie b2 = new GoodsBogie("Rectangular");
+        // Array of passenger bogie capacities
+        int[] capacities = {72, 56, 24, 70, 60};
 
-        // Safe assignment
-        b1.assignCargo("Petroleum");
+        // Display original array
+        System.out.print("Original Capacities: ");
+        printArray(capacities);
 
-        // Unsafe assignment
-        b2.assignCargo("Petroleum");
+        // 🔹 Bubble Sort
+        int n = capacities.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
 
-        // Program continues
-        System.out.println("Program continues safely...");
+                // Compare adjacent elements
+                if (capacities[j] > capacities[j + 1]) {
+
+                    // Swap
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
+
+        // Display sorted array
+        System.out.print("Sorted Capacities: ");
+        printArray(capacities);
+    }
+
+    // Helper method to print array
+    static void printArray(int[] arr) {
+        for (int val : arr) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
     }
 }
